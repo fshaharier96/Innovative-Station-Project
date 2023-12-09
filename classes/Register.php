@@ -5,12 +5,14 @@ require 'vendor/autoload.php';
 use Rakit\Validation\Validator;
 
 
+
 class Register{
 
     public function login($post){
 
         $db=new Database();
         $conn=$db->conn;
+        session_start();
         $validator = new Validator();
         $validation = $validator->validate($post, [
             'email' => 'required|email',
@@ -43,6 +45,9 @@ class Register{
             if ($result) {
 
                 if (mysqli_num_rows($result) > 0) {
+                    $row=mysqli_fetch_assoc($result);
+                    $_SESSION['user_id']=$row['id'];
+                    $_SESSION['fname']=$row['first_name'];
                     header("Location:/home");
                 } else {
                       echo "Icorrect password or username";

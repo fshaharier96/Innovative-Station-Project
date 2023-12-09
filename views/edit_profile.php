@@ -1,4 +1,9 @@
 <?php
+$dir=dirname(__DIR__);
+include_once $dir."/classes/Employee.php";
+$employee=new Employee();
+$employee->showEmployeeProfile($id3);
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -15,7 +20,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- stylesheet link-->
-    <link rel="stylesheet" href="assets/style/css/main.css">
+    <link rel="stylesheet" href="/assets/style/css/main.css">
 
     <title>profile</title>
 </head>

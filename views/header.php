@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 ?>
 <div class="container-fluid  header p-3">
     <div class="row">
@@ -9,8 +11,8 @@
                 </h3>
             </div>
             <div class="col-6  d-flex justify-content-end align-items-center">
-                <div class="mx-2"><span>Welcome,Farhan</span></div>
-                <div><a class="btn btn-primary" href="">Edit Profile</a></div>
+                <div class="mx-2"><span>Welcome,<?php echo $_SESSION['fname'] ?></span></div>
+                <div><a class="btn btn-primary" href="/edit-profile/<?php echo $_SESSION['user_id'] ?>">Edit Profile</a></div>
             </div>
         </div>
     </div>

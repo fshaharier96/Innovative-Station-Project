@@ -213,9 +213,11 @@ class Product
         }
 
 
-
-
     }
 
+
+    public function editProfile(){
+        
+    }
 
 }

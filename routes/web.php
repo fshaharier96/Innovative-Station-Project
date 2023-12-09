@@ -74,6 +74,13 @@ $router->post('/edit-product-data', function () {
 
 });
 
+$router->get('/edit-profile/(\d+)', function ($id3) {
+    global $dir;
+    require $dir."/views/edit_profile.php";
+    exit;
+
+});
+
 $router->get('/delete/(\d+)', function ($id2) {
     global $product;
     $product-> deleteProduct($id2);
