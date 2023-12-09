@@ -4,4 +4,12 @@
   box-sizing: border-box;
 }
 
+.header {
+  background: linear-gradient(to right, #686de0, #7ed6df);
+}
+
+.container {
+  height: 800px;
+}
+
 /*# sourceMappingURL=main.css.map */

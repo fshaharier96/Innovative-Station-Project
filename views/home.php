@@ -1,10 +1,15 @@
 <?php
+$dir = dirname(__DIR__);
+include_once $dir . "/classes/Product.php";
+$product = new Product();
+$result = $product->showProduct();
 ?>
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- fontawsome cdn -->
 
@@ -18,9 +23,73 @@
     <title>home</title>
 </head>
 <body>
+<?php
+include_once $dir . "/views/header.php";
+
+?>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex  col-12">
+                <h3 class="text-left mb-4 col-6"><span class="border shadow rounded-2 px-3 py-1">All Products</span>
+                </h3>
+                <div class="col-6  d-flex justify-content-end"><a
+                            class="btn btn-primary text-decoration-none d-inline-flex align-items-center  h-75 rounded-2"
+                            href="/add-product">Add Product</a></div>
+            </div>
+            <table class="table table-striped">
+                <thead class="table-primary">
+                <tr class="">
+                    <th>Product_id</th>
+                    <th>Product_name</th>
+                    <th>Product_details</th>
+                    <th>Product_price</th>
+                    <th>Product_image</th>
+                    <th>Action</th>
+
+                </tr>
+
+                </thead>
+                <tbody>
+                <?php
+                if ($result) {
+                    if (mysqli_num_rows($result) > 0) {
+
+                        while ($row = mysqli_fetch_assoc($result)) {
 
 
+                            ?>
+                            <tr>
+                                <td><?php echo $row['id'] ?></td>
+                                <td><?php echo $row['product_name'] ?></td>
+                                <td><?php echo $row['product_details'] ?></td>
+                                <td><?php echo $row['product_price'] ?></td>
+                                <?php ?>
+                                <td><img style="height:30px; width:40px;" src="" alt="product_img"/></td>
 
+                                <td>
+                                    <a class="btn btn-success" href="/edit-product/<?php echo $row['id'] ?>">Edit</a>
+                                    <a class="btn btn-danger" href="/delete/<?php echo $row['id'] ?>">Delete</a>
+                                </td>
+                            </tr>
+                            <?php
+                        }
+
+                    }
+
+
+                } else {
+                    echo "no records found";
+                }
+
+                ?>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
 
 
 <!-- javascript dependencies -->
