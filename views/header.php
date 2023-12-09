@@ -13,6 +13,7 @@ session_start();
             <div class="col-6  d-flex justify-content-end align-items-center">
                 <div class="mx-2"><span>Welcome,<?php echo $_SESSION['fname'] ?></span></div>
                 <div><a class="btn btn-primary" href="/edit-profile/<?php echo $_SESSION['user_id'] ?>">Edit Profile</a></div>
+                <div class="mx-2"><a class="btn btn-primary" href="/logout">Exit</a></div>
             </div>
         </div>
     </div>

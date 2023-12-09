@@ -36,7 +36,8 @@ class Register{
 
             $email = $post['email'];
             $password = $post['password'];
-            $hashedPassword = hash('sha256', $password);
+//            $hashedPassword = hash('sha256', $password);
+            $hashedPassword=base64_encode($password);
 
             $sql = "SELECT * FROM employee WHERE email='{$email}' AND password='{$hashedPassword}'";
 
@@ -48,6 +49,8 @@ class Register{
                     $row=mysqli_fetch_assoc($result);
                     $_SESSION['user_id']=$row['id'];
                     $_SESSION['fname']=$row['first_name'];
+
+
                     header("Location:/home");
                 } else {
                       echo "Icorrect password or username";
@@ -120,9 +123,15 @@ class Register{
             }
         }
 
-
-
     }
+
+    public function logout(){
+     session_start();
+     session_unset();
+     session_destroy();
+     header("Location:/");
+    }
+
 
 
 }

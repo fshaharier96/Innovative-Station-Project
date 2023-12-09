@@ -4,6 +4,7 @@ $dir = dirname(__DIR__);
 require_once $dir . '/vendor/autoload.php'; // Include the Composer autoloader
 include_once $dir.'/classes/Register.php';
 include_once $dir.'/classes/Product.php';
+include_once $dir.'/classes/Employee.php';
 
 use Bramus\Router\Router;
 
@@ -12,6 +13,9 @@ $reg=new Register();
 
 // Initialize Product class
 $product=new Product();
+
+//// Initialize Product class
+$employee=new Employee();
 
 // Initialize the router
 $router = new Router();
@@ -81,6 +85,14 @@ $router->get('/edit-profile/(\d+)', function ($id3) {
 
 });
 
+$router->post('/edit-profile-data', function () {
+    global $employee;
+    $employee->editProduct($_POST);
+    exit;
+
+
+});
+
 $router->get('/delete/(\d+)', function ($id2) {
     global $product;
     $product-> deleteProduct($id2);
@@ -88,6 +100,13 @@ $router->get('/delete/(\d+)', function ($id2) {
 
 
 });
+
+$router->get('/logout', function () {
+    global $reg;
+    $reg->logout();
+    exit;
+});
+
 
 
 
