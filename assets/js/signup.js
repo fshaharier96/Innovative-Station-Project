@@ -32,11 +32,11 @@
                     required: "Please enter your email address",
                     email: "Please enter a valid email"
                 },
-                first_name:{
+                first_name: {
                     required: "Please enter your first name"
                 },
 
-                last_name:{
+                last_name: {
                     required: "Please enter your last name"
                 },
 

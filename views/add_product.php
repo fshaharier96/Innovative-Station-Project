@@ -21,34 +21,38 @@
 </head>
 <body>
 <?php
-$dir=dirname(__DIR__);
-include_once $dir."/views/header.php";
+$dir = dirname(__DIR__);
+include_once $dir . "/views/header.php";
 ?>
 <div class="container">
     <div class="row d-flex justify-content-center">
         <div class="col-6 d-flex justify-content-center align-items-center flex-column">
             <h2 class="mt-3">Add Product</h2>
-            <form class="form form-control border border-secondary p-4" action="/add-product-data" method="post" enctype="multipart/form-data">
+            <form class="form form-control border border-secondary p-4" action="/add-product-data" method="post"
+                  enctype="multipart/form-data">
                 <div class="form-group mb-3">
                     <label class="form-label">Product name</label>
-                    <input class="form-control border border-secondary" type="text" name="product_name" placeholder="product name"/>
+                    <input class="form-control border border-secondary" type="text" name="product_name"
+                           placeholder="product name"/>
                 </div>
 
                 <div class="form-group mb-3">
                     <label class="form-label">Product details</label>
-                    <textarea rows="5" class="form-control border border-secondary" name="product_details" placeholder="Description"></textarea>
+                    <textarea rows="5" class="form-control border border-secondary" name="product_details"
+                              placeholder="Description"></textarea>
                 </div>
 
                 <div class="form-group mb-3">
                     <label class="form-label">Product price</label>
-                    <input class="form-control border border-secondary" type="text" name="product_price" placeholder="product price"/>
+                    <input class="form-control border border-secondary" type="text" name="product_price"
+                           placeholder="product price"/>
 
                 </div>
 
                 <div id="image-field" class="form-group mb-3">
-                    <label  class="form-label">Image</label>
+                    <label class="form-label">Image</label>
                     <div class="d-flex w-100">
-                    <input class="form-control  border border-secondary me-2" type="file" name="image[]" multiple/>
+                        <input class="form-control  border border-secondary me-2" type="file" name="image[]" multiple/>
 
                     </div>
                     <span class="text-success">* add multiple image at a time</span>
@@ -60,10 +64,6 @@ include_once $dir."/views/header.php";
         </div>
     </div>
 </div>
-
-
-
-
 
 
 <!-- javascript dependencies -->

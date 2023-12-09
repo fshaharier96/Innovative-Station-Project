@@ -22,16 +22,11 @@ class Register{
 
         ]);
         if ($validation->fails()) {
-//            $validation_errors = $validation->errors();
-//            $errors = $validation_errors->firstOfAll();
-//
-//            /* echo '<pre>';
-//             print_r($errors);
-//             echo '</pre>';*/
-//
-//            $session->set("error", "Invalid username or password");
-//            $session->set("field_errors", $errors);
-            echo "invalid username or  password";
+            $validation_errors = $validation->errors();
+            $errors = $validation_errors->firstOfAll();
+            $_SESSION['login_field_errors']=$errors;
+            header('Location:/');
+            exit;
         } else {
 
             $email = $post['email'];
@@ -52,8 +47,10 @@ class Register{
 
 
                     header("Location:/home");
+                    exit;
                 } else {
-                      echo "Icorrect password or username";
+                      $_SESSION['login_error']='wrong username or password';
+                    header('Location:/');
 //                    $session->set("error", "This email has been taken already");
                 }
 
@@ -64,7 +61,7 @@ class Register{
     }
     public function signup($post){
      // Initialize Database class
-
+        session_start();
         $db=new Database();
         $conn=$db->conn;
         $validator = new Validator();
@@ -79,16 +76,13 @@ class Register{
         ]);
 
         if ($validation->fails()) {
-//            $validation_errors = $validation->errors();
-//            $errors = $validation_errors->firstOfAll();
-//
-//            /* echo '<pre>';
-//             print_r($errors);
-//             echo '</pre>';*/
-//
-//            $session->set("error", "Invalid username or password");
-//            $session->set("field_errors", $errors);
-            echo "invalid username or  password";
+
+            $validation_errors = $validation->errors();
+            $errors = $validation_errors->firstOfAll();
+            $_SESSION['signup_field_errors']=$errors;
+            header('Location:/signup');
+
+
         } else {
 
             $email = $post['email'];
@@ -106,18 +100,19 @@ class Register{
                 if (mysqli_num_rows($result) == 0) {
                     if (mysqli_query($conn, $sql1)) {
 
-//                        $session->set("success", "Registration successful! ");
+
                          header("Location:/");
 
                     } else {
+                        $_SESSION['signup_error']="registration failed";
+                        header('Location:/signup');
 
-//                        $session->set("error", "Registration failed");
-                        echo "registration failed";
                     }
                 } else {
 
-//                    $session->set("error", "This email has been taken already");
-                    echo "duplicate email";
+                    $_SESSION['signup_error']="The email has already been taken";
+                    header('Location:/signup');
+
                 }
 
             }

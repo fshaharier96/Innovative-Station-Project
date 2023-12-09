@@ -19,34 +19,56 @@ session_start();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- stylesheet link-->
-    <link rel="stylesheet" href="assets/style/css/main.css">
+    <link rel="stylesheet" href="/assets/style/css/main.css">
 
     <title>login</title>
 </head>
 <body style="height: 100vh;">
 
 <div class="container  h-100 p-4">
-     <div class="row h-100  d-flex justify-content-center align-items-center">
-         <div class="col-5 h-75  d-flex  flex-column p-5">
-             <h2 class="text-center mb-3">Employee login</h2>
-             <form id="loginForm" class="form-control border border-secondary p-4" action="/login-data" method="post">
-                 <div class="form-group mb-3">
-                     <label>Email</label>
-                     <input type="email" class="form-control border border-secondary" name="email" />
-                 </div>
-                 <div class="form-group mb-3">
-                     <label>Password</label>
-                     <input type="password" class="form-control border border-secondary" name="password"/>
-                 </div>
-                 <button type="submit" name="submit" class="btn btn-primary form-control mb-3">login</button>
-                 <div class="form-group">
-                     <p>Don't have any account? <a class="text-decoration-none" href='/signup'>Sign up</a></p>
-                 </div>
+    <div class="row h-100  d-flex justify-content-center align-items-center">
+        <div class="col-5 h-75  d-flex  flex-column p-5">
+            <?php
+            if (isset($_SESSION['login_error'])) {
+                echo "<div class='alert alert-warning text-center'>" . $_SESSION['login_error'] . "</div>";
+                unset($_SESSION['login_error']);
+            }
+            ?>
+            <h2 class="text-center mb-3">Employee login</h2>
+            <form id="loginForm" class="form-control border border-secondary p-4" action="/login-data" method="post">
+                <div class="form-group mb-3">
+                    <label>Email</label>
+                    <input type="email" class="form-control border border-secondary" name="email"
+                           placeholder="Enter your email"/>
+                    <?php
+                    if (isset($_SESSION['login_field_errors']['email'])) {
+                        echo "<div class='text-danger'>" . $_SESSION['login_field_errors']['email'] . "</div>";
+                        unset($_SESSION['login_field_errors']['email']);
+                    }
+                    ?>
+                </div>
+                <div class="form-group mb-3">
+                    <label>Password</label>
+                    <input type="password" class="form-control border border-secondary" name="password"
+                           placeholder="Enter your password"/>
+                    <?php
+
+                    if (isset($_SESSION['login_field_errors']['password'])) {
+                        echo "<div class='text-danger'>" . $_SESSION['login_field_errors']['password'] . "</div>";
+                        unset($_SESSION['login_field_errors']['password']);
+                    }
+                    ?>
+
+                </div>
+                <button type="submit" name="submit" class="btn btn-primary form-control mb-3">login</button>
+                <div class="form-group">
+                    <p>Don't have any account? <a class="text-decoration-none" href='/signup'>Sign up</a></p>
+                </div>
 
 
-             </form>
-         </div>
-     </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 <!-- javascript dependencies -->

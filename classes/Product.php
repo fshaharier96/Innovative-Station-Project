@@ -53,8 +53,8 @@ class Product
                     $thumbnailTempName = $file['image']['tmp_name'][$i];
                     $thumbExtension = explode('.', $thumbnail);
                     $thumbFileExtension = end($thumbExtension);
-                    $thumbnailFinalPath = $dir . "/uploads/thumbnail-" . uniqid() . "-" . $thumbnail;
-                    $thumbnailFinalPath2 = "/uploads/thumbnail-" . uniqid() . "-" . $thumbnail;
+                    $thumbnailFinalPath = $dir . "/uploads/thumbnail-". $thumbnail;
+                    $thumbnailFinalPath2 = "/uploads/thumbnail-" .$thumbnail;
                     if (in_array($thumbFileExtension, $extArray)) {
                         move_uploaded_file($thumbnailTempName, $thumbnailFinalPath);
                     }

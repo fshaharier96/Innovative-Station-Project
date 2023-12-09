@@ -57,8 +57,8 @@ include_once $dir . "/views/header.php";
                     if (mysqli_num_rows($result) > 0) {
 
                         while ($row = mysqli_fetch_assoc($result)) {
-
-
+                            $thumb_img = $row['product_thumbnail'];
+                            $image_path = '..' . $row['product_thumbnail'];
                             ?>
                             <tr>
                                 <td><?php echo $row['id'] ?></td>
@@ -66,11 +66,11 @@ include_once $dir . "/views/header.php";
                                 <td><?php echo $row['product_details'] ?></td>
                                 <td><?php echo $row['product_price'] ?></td>
                                 <?php ?>
-                                <td><img style="height:30px; width:40px;" src="" alt="product_img"/></td>
+                                <td><img width="60" src="<?php echo $image_path ?>" alt="product_img"/></td>
 
                                 <td>
                                     <a class="btn btn-success" href="/edit-product/<?php echo $row['id'] ?>">Edit</a>
-                                    <a class="btn btn-danger" href="/delete/<?php echo $row['id'] ?>">Delete</a>
+                                    <a class="btn btn-danger" href="/delete/<?php echo $dir . $row['id'] ?>">Delete</a>
                                 </td>
                             </tr>
                             <?php

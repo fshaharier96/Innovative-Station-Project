@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 
 ?>
 <!doctype html>
@@ -26,28 +26,75 @@
 <div class="container h-100">
     <div class="row h-100 d-flex justify-content-center align-items-center">
         <div class="col-7 h-100 d-flex justify-content-center align-items-center flex-column">
+            <?php
+            if (isset($_SESSION['signup_error'])) {
+                echo "<div class='alert alert-warning text-center'>" . $_SESSION['signup_error'] . "</div>";
+                unset($_SESSION['signup_error']);
+            }
+            ?>
             <h2 class="text-center mb-3">Employee Register</h2>
-            <form id="signupForm" class="w-75 form-control border border-secondary p-4" action="/signup-data" method="post">
+            <form id="signupForm" class="w-75 form-control border border-secondary p-4" action="/signup-data"
+                  method="post">
                 <div class="form-group mb-3">
                     <label>Email</label>
-                    <input  type="email" class="form-control border border-secondary" name="email" placeholder="Enter email"/>
+                    <input type="email" class="form-control border border-secondary" name="email"
+                           placeholder="Enter email"/>
+                    <?php
+                    if (isset($_SESSION['signup_field_errors']['email'])) {
+                        echo "<div class='text-danger'>" . $_SESSION['signup_field_errors']['email'] . "</div>";
+                        unset($_SESSION['signup_field_errors']['email']);
+                    }
+                    ?>
+
                 </div>
                 <div class="form-group mb-3">
                     <label>First Name</label>
-                    <input type="text" class="form-control border border-secondary" name="first_name" placeholder="Enter first name"/>
+                    <input type="text" class="form-control border border-secondary" name="first_name"
+                           placeholder="Enter first name"/>
+                    <?php
+                    if (isset($_SESSION['signup_field_errors']['first_name'])) {
+                        echo "<div class='text-danger'>" . $_SESSION['signup_field_errors']['first_name'] . "</div>";
+                        unset($_SESSION['signup_field_errors']['first_name']);
+                    }
+                    ?>
+
                 </div>
                 <div class="form-group mb-3">
                     <label>Last Name</label>
-                    <input type="text" class="form-control border border-secondary" name="last_name" placeholder="Enter last name"/>
+                    <input type="text" class="form-control border border-secondary" name="last_name"
+                           placeholder="Enter last name"/>
+                    <?php
+                    if (isset($_SESSION['signup_field_errors']['last_name'])) {
+                        echo "<div class='text-danger'>" . $_SESSION['signup_field_errors']['last_name'] . "</div>";
+                        unset($_SESSION['signup_field_errors']['last_name']);
+                    }
+                    ?>
+
                 </div>
 
                 <div class="form-group mb-3">
                     <label>Password</label>
-                    <input type="password" class="form-control border border-secondary" name="password" placeholder="Enter password"/>
+                    <input type="password" class="form-control border border-secondary" name="password"
+                           placeholder="Enter password"/>
+                    <?php
+                    if (isset($_SESSION['signup_field_errors']['password'])) {
+                        echo "<div class='text-danger'>" . $_SESSION['signup_field_errors']['password'] . "</div>";
+                        unset($_SESSION['signup_field_errors']['password']);
+                    }
+                    ?>
+
                 </div>
                 <div class="form-group mb-3">
                     <label>Confirm Password</label>
-                    <input type="password" class="form-control border border-secondary" name="confirm_password" placeholder="Retype password"/>
+                    <input type="password" class="form-control border border-secondary" name="confirm_password"
+                           placeholder="Retype password"/>
+                    <?php
+                    if (isset($_SESSION['signup_field_errors']['confirm_password'])) {
+                        echo "<div class='text-danger'>" . $_SESSION['signup_field_errors']['confirm_password'] . "</div>";
+                        unset($_SESSION['signup_field_errors']['confirm_password']);
+                    }
+                    ?>
+
                 </div>
                 <button type="submit" name="submit" class="btn btn-primary form-control mb-3">Sign up</button>
                 <div class="form-group">
