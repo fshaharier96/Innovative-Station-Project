@@ -29,14 +29,14 @@ session_start();
      <div class="row h-100  d-flex justify-content-center align-items-center">
          <div class="col-5 h-75  d-flex  flex-column p-5">
              <h2 class="text-center mb-3">Employee login</h2>
-             <form class="form-control border border-secondary p-4" action="/login-data" method="post">
+             <form id="loginForm" class="form-control border border-secondary p-4" action="/login-data" method="post">
                  <div class="form-group mb-3">
                      <label>Email</label>
-                     <input type="email" class="form-control border border-secondary" name="email" required/>
+                     <input type="email" class="form-control border border-secondary" name="email" />
                  </div>
                  <div class="form-group mb-3">
                      <label>Password</label>
-                     <input type="password" class="form-control border border-secondary" name="password" required/>
+                     <input type="password" class="form-control border border-secondary" name="password"/>
                  </div>
                  <button type="submit" name="submit" class="btn btn-primary form-control mb-3">login</button>
                  <div class="form-group">
@@ -50,7 +50,10 @@ session_start();
 </div>
 
 <!-- javascript dependencies -->
+<script src="../assets/js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js_plugin/jquery-form-validation/jquery.validate.min.js"></script>
+<script src="../assets/js/index.js"></script>
 
 <script>
     if (window.history.replaceState) {
