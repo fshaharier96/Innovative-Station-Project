@@ -95,7 +95,7 @@ class Register{
             $first_name = $post['first_name'];
             $last_name = $post['last_name'];
             $password = $post['password'];
-            $hashedPassword = hash('sha256', $password);
+            $hashedPassword =base64_encode($password);
 
             $sql = "SELECT * FROM employee WHERE email='{$email}'";
             $sql1 = "INSERT INTO employee(first_name,last_name,email,password) VALUES('{$first_name}','{$last_name}','{$email}','{$hashedPassword}')";
